@@ -9,6 +9,9 @@ window.onload = function(){
     const title_el = create_element('h1','','',title);
     indexFragment.append(title_el);
 
+    const enterButton = create_element('button','enter_button','','入口');
+    indexFragment.append(enterButton);
+
     
 
 
