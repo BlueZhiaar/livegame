@@ -1,0 +1,29 @@
+let Events = [
+
+   {
+    'question':'崖から落ちた',
+    'choices':{
+        'そのまま帰る':{
+            'honesty':-5,
+            'money':0
+        },
+        '病院に行く':{
+            'honesty':2,
+            'money':-3000
+        }
+    }
+   },
+   {
+    'question':'クマのぬいぐるみを拾った',
+    'choices':{
+        '交番に届ける':{
+            'honesty':3,
+            'money':0
+        },
+        'スルーする':{
+            'honesty':-3,
+            'money':0
+        }
+    }
+   }
+]

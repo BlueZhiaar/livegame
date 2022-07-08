@@ -1,6 +1,7 @@
 'use strict';
 /**
  * HTMLの要素を作成する関数
+ * create_element
  * @param {str} tag
  * @param {str} id_name
  * @param {str} class_name
@@ -20,4 +21,12 @@ function create_element(tag,id_name='',class_name='',inner_text=''){
     }
 
     return el;
+}
+
+//Eventsの中でランダムなオブジェクトを返す
+function getRandomEvent(){
+    let num;
+    num = Math.floor(Math.random() * Events.length);
+
+    return Events[num].question;
 }
