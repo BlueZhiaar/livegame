@@ -25,5 +25,31 @@ let Events = [
             'money':0
         }
     }
+   },
+   {
+    'question':'とんでもないことになった',
+    'choices':{
+        'そのまま帰る':{
+            'honesty':-5,
+            'money':0
+        },
+        '病院に行く':{
+            'honesty':2,
+            'money':-3000
+        }
+    }
+   },
+   {
+    'question':'逆立ちしたままこちらに歩いてくる人がいる',
+    'choices':{
+        'そのまま帰る':{
+            'honesty':-5,
+            'money':0
+        },
+        '病院に行く':{
+            'honesty':2,
+            'money':-3000
+        }
+    }
    }
 ]
