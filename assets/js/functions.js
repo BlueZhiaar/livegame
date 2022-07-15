@@ -32,7 +32,7 @@ function getRandomEvent(){
 }
 
 //input属性の要素を返す
-function create_input_element(type,id_name='',class_name='',value='',innner_text=''){
+function create_input_element(type,id_name='',class_name='',value='',innner_text='',name_name=''){
     const el = document.createElement('input');
     if(type){
         el.type = type;
@@ -49,6 +49,9 @@ function create_input_element(type,id_name='',class_name='',value='',innner_text
     if(innner_text){
         el.innerText = innner_text;
     }
+    if(name_name){
+        el.name = name_name;
+    }
 
     return el;
 
@@ -62,4 +65,24 @@ function create_label(label_name){
         el.innerText = label_name;
     }
     return el;
+}
+
+//選択されているradioの番号を返す
+/**
+ * @param {object} radio
+ * @return {string} 
+ */
+function returnRadiosValue(radio_object){
+        let checkValue = '';
+        let num;
+
+        for(let i = 0; i < radio_object.length;i++){
+            if(radio_object.item(i).checked){
+                checkValue = radio_object.item(i).value;
+                num = i;
+            }
+        }
+
+        console.log(`選択されているのは${checkValue}です${num}`);
+        return num;
 }
