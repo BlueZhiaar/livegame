@@ -115,7 +115,7 @@ function makeAQuestionAndRadio(fragment_object,user_object,num){
     let choiceRadio = document.getElementsByName('choice_radio');
 
     
-    
+    //選択されたものをUserクラスに記録する
     console.log(choiceRadio);
 
     submitButton.onclick = function(){
