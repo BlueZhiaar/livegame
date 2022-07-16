@@ -1,5 +1,7 @@
 'use strict';
 const enterButton = document.getElementById('enter_button');
+const displayArea = document.getElementById('display_area');
+let limitNum = 5;
 
 
 
@@ -42,12 +44,17 @@ class Question {
 
 enterButton.onclick = function(){
     let questionLimit = 5;
-    const displayArea = document.getElementById('display_area');
+    //const displayArea = document.getElementById('display_area');
     displayArea.innerText = ''; //表示内容の消去
     let questionRecMap = new Map();
     let fragment = new DocumentFragment();
     let userObject = new User();
-    let limitNum = 5;
+    
+    //画面を表示した回数を記録する
+    let recNum = 0;
+
+    //question_log_arrにArray型を入れる
+    userObject.question_log_arr = new Array();
 
  //test_json.jsを呼び出す
     //TODO 五回、ランダムなイベントを表示させる
@@ -67,13 +74,15 @@ enterButton.onclick = function(){
 setQuestionsObjects(limitNum,userObject);
 
 //質問文とラジオボタンを試しに設置
-makeAQuestionAndRadio(fragment,userObject,0)
+makeAQuestionAndRadio(fragment,userObject,recNum);
+
+
 
 
 
    
 
-    displayArea.append(fragment);
+    //displayArea.append(fragment);
 }
 
 //Userオブジェクトに制限回分の質問オブジェクトをセットする
@@ -93,6 +102,11 @@ function returnQuestionSentence(user_object,question_num){
 
 //一回分の質問文とラジオボタンを設置する
 function makeAQuestionAndRadio(fragment_object,user_object,num){
+    if(num > limitNum-1){
+        //TODO 結果を記述するresult.jsへの値の受け渡しが困難なのでここでやる
+        showResult(fragment_object,user_object);
+        return;
+    }
     const questionSentence = create_element('p','question_sentence','',user_object.question_object_arr[num].question);
     fragment_object.append(questionSentence);
     //choicesがMapなのかオブジェクトなのかJSONなのか区別がついてない。choicesのkeyだけを引っ張り出して選択肢のラベルにしたい
@@ -111,16 +125,40 @@ function makeAQuestionAndRadio(fragment_object,user_object,num){
     const submitButton = create_element('button','submit_button','','私は選択する');
     fragment_object.append(submitButton);
 
+    //全てを描画
+    displayArea.append(fragment_object);
+
     //radioをnameから取得する
     let choiceRadio = document.getElementsByName('choice_radio');
 
-    
-    //選択されたものをUserクラスに記録する
     console.log(choiceRadio);
 
     submitButton.onclick = function(){
         console.log('clicked');
 
-        returnRadiosValue(choiceRadio);
+        returnRadiosNum(choiceRadio);
+        let questionLogObject = {
+            question_sentence: user_object.question_object_arr[num].question,
+            choices_sentences: Object.keys(user_object.question_object_arr[num].choices),
+            users_choice_num: returnRadiosNum(choiceRadio),
+            users_choice_sentence: Object.keys(user_object.question_object_arr[num].choices)[returnRadiosNum(choiceRadio)]
+
+        }
+        user_object.question_log_arr.push(questionLogObject);
+        displayArea.innerText = ''; //表示内容の消去
+        //イベント回数を増やす
+        num = num+1;
+        makeAQuestionAndRadio(fragment_object,user_object,num);
+        
+        console.log(user_object.question_log_arr);
     }
+}
+
+//結果を表示する
+function showResult(fragment_object,user_object){
+    const testelement = create_element('p','','','Hello World!');
+    fragment_object.append(testelement);
+
+    //全てを描画
+    displayArea.append(fragment_object);
 }

@@ -72,7 +72,7 @@ function create_label(label_name){
  * @param {object} radio
  * @return {string} 
  */
-function returnRadiosValue(radio_object){
+function returnRadiosNum(radio_object){
         let checkValue = '';
         let num;
 
