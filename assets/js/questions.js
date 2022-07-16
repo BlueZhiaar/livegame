@@ -7,7 +7,7 @@ let limitNum = 5;
 
 //question_log_arr = [{'question':[select,effectnum]},{'question':[select,effectnum]}]
 class User {
-    constructor(question_object_arr,question_log_arr,honesty,money,resultbody){
+    constructor(question_object_arr, question_log_arr, honesty, money, resultbody) {
         this.question_object_arr = question_object_arr;
         this.question_log_arr = question_log_arr;
         this.honesty = honesty;
@@ -15,14 +15,14 @@ class User {
         this.resultbody = resultbody;
     }
 
-  
+
 
 
 }
 
 //一個一個のイベントを入れるテンプレート
 class Question {
-    constructor(question,choicesMap){
+    constructor(question, choicesMap) {
         this.question = question;
         this.choicesMap = choicesMap;
     }
@@ -42,21 +42,21 @@ class Question {
  */
 
 
-enterButton.onclick = function(){
+enterButton.onclick = function () {
     let questionLimit = 5;
     //const displayArea = document.getElementById('display_area');
     displayArea.innerText = ''; //表示内容の消去
     let questionRecMap = new Map();
     let fragment = new DocumentFragment();
     let userObject = new User();
-    
+
     //画面を表示した回数を記録する
     let recNum = 0;
 
     //question_log_arrにArray型を入れる
     userObject.question_log_arr = new Array();
 
- //test_json.jsを呼び出す
+    //test_json.jsを呼び出す
     //TODO 五回、ランダムなイベントを表示させる
     //TODO 所持金と良心の管理
     //イベント文と選択肢パラメータの増加をオブジェクトにしたい（Mapにしそう
@@ -64,65 +64,67 @@ enterButton.onclick = function(){
     //ランダムに出る質問と選択しごとのパラメータの増減を置いておくquestionLibraryオブジェクト
     //できたライブラリオブジェクトをすべて配列に格納する
     //TODO ラジオボタンを生成する
-    
-    
+
+
 
 
     //イベント五回まわしてログにセットする関数を作る
 
-//回数分の質問と選択肢のセットをセットする
-setQuestionsObjects(limitNum,userObject);
+    //回数分の質問と選択肢のセットをセットする
+    setQuestionsObjects(limitNum, userObject);
 
-//質問文とラジオボタンを試しに設置
-makeAQuestionAndRadio(fragment,userObject,recNum);
-
-
+    //質問文とラジオボタンを試しに設置
+    makeAQuestionAndRadio(fragment, userObject, recNum);
 
 
 
-   
+
+
+
 
     //displayArea.append(fragment);
 }
 
 //Userオブジェクトに制限回分の質問オブジェクトをセットする
-function setQuestionsObjects(limitnum,user_object){
+function setQuestionsObjects(limitnum, user_object) {
     user_object.question_object_arr = new Array();
-    for(let i =0; i < limitnum; i++){
+    for (let i = 0; i < limitnum; i++) {
         user_object.question_object_arr.push(getRandomEvent());
     }
     console.log(user_object);
 }
 
 //Userオブジェクトの質問オブジェクトから番号の質問文を返す
-function returnQuestionSentence(user_object,question_num){
-    console.log(user_object.question_object_arr[question_num].question);
+function returnQuestionSentence(user_object, question_num) {
+    //console.log(user_object.question_object_arr[question_num].question);
     return user_object.question_object_arr[question_num].question;
 }
 
 //一回分の質問文とラジオボタンを設置する
-function makeAQuestionAndRadio(fragment_object,user_object,num){
-    if(num > limitNum-1){
+function makeAQuestionAndRadio(fragment_object, user_object, num) {
+
+    //イベントの制限回数に達したら終わる
+    if (num > limitNum - 1) {
         //TODO 結果を記述するresult.jsへの値の受け渡しが困難なのでここでやる
-        showResult(fragment_object,user_object);
+        showResult(fragment_object, user_object);
         return;
     }
-    const questionSentence = create_element('p','question_sentence','',user_object.question_object_arr[num].question);
+    const questionSentence = create_element('p', 'question_sentence', '', user_object.question_object_arr[num].question);
     fragment_object.append(questionSentence);
     //choicesがMapなのかオブジェクトなのかJSONなのか区別がついてない。choicesのkeyだけを引っ張り出して選択肢のラベルにしたい
-    const selectInput_0 = create_input_element('radio','select_radio','select_0',Object.keys(user_object.question_object_arr[num].choices)[0],'','choice_radio');
+    const selectInput_0 = create_input_element('radio', 'select_radio', 'select_0', Object.keys(user_object.question_object_arr[num].choices)[0], '', 'choice_radio');
     fragment_object.append(selectInput_0);
     const selectLabel_0 = create_label(Object.keys(user_object.question_object_arr[num].choices)[0]);
     fragment_object.append(selectLabel_0);
     const br = create_element('br');
     fragment_object.append(br);
-    const selectInput_1 = create_input_element('radio','select_radio','select_1',Object.keys(user_object.question_object_arr[num].choices)[1],'','choice_radio');
+    const selectInput_1 = create_input_element('radio', 'select_radio', 'select_1', Object.keys(user_object.question_object_arr[num].choices)[1], '', 'choice_radio');
     fragment_object.append(selectInput_1);
     const selectLabel_1 = create_label(Object.keys(user_object.question_object_arr[num].choices)[1]);
     fragment_object.append(selectLabel_1);
-    const br_2 =create_element('br');
+    const br_2 = create_element('br');
     fragment_object.append(br_2);
-    const submitButton = create_element('button','submit_button','','私は選択する');
+    const submitButton = create_element('button', 'submit_button', '', '私は選択する');
     fragment_object.append(submitButton);
 
     //全てを描画
@@ -131,34 +133,137 @@ function makeAQuestionAndRadio(fragment_object,user_object,num){
     //radioをnameから取得する
     let choiceRadio = document.getElementsByName('choice_radio');
 
-    console.log(choiceRadio);
+    //console.log(choiceRadio);
 
-    submitButton.onclick = function(){
-        console.log('clicked');
+    submitButton.onclick = function () {
+        //console.log('clicked');
 
         returnRadiosNum(choiceRadio);
         let questionLogObject = {
             question_sentence: user_object.question_object_arr[num].question,
             choices_sentences: Object.keys(user_object.question_object_arr[num].choices),
             users_choice_num: returnRadiosNum(choiceRadio),
-            users_choice_sentence: Object.keys(user_object.question_object_arr[num].choices)[returnRadiosNum(choiceRadio)]
+            users_choice_sentence: Object.keys(user_object.question_object_arr[num].choices)[returnRadiosNum(choiceRadio)],
+            change_param: {
+                honesty: Object.values(user_object.question_object_arr[num].choices)[returnRadiosNum(choiceRadio)].honesty,
+                money: Object.values(user_object.question_object_arr[num].choices)[returnRadiosNum(choiceRadio)].money
+            }
 
         }
         user_object.question_log_arr.push(questionLogObject);
         displayArea.innerText = ''; //表示内容の消去
         //イベント回数を増やす
-        num = num+1;
-        makeAQuestionAndRadio(fragment_object,user_object,num);
-        
+        num = num + 1;
+        //質問画面を再度生成する
+        makeAQuestionAndRadio(fragment_object, user_object, num);
+
         console.log(user_object.question_log_arr);
     }
 }
 
 //結果を表示する
-function showResult(fragment_object,user_object){
-    const testelement = create_element('p','','','Hello World!');
-    fragment_object.append(testelement);
+function showResult(fragment_object, user_object) {
+    const discription = create_element('h2', '', '', 'あなたのとった行動と結果');
+    fragment_object.append(discription);
+    let holdingMoney = 10000;
+    let holdingHonesty = 0;
+    let userQuestionSentenceArr = new Array();
+    let userChoiceSentenceArr = new Array();
+    let userChangeParamArr = new Array();
 
+    //オブジェクトの場所指定する表記が長くなるので配列に入れて管理する
+    for (let i = 0; i < user_object.question_log_arr.length; i++) {
+        userQuestionSentenceArr.push(user_object.question_log_arr[i].question_sentence)
+    }
+    for (let i = 0; i < user_object.question_log_arr.length; i++) {
+        userChoiceSentenceArr.push(user_object.question_log_arr[i].users_choice_sentence)
+    }
+
+    for (let i = 0; i < user_object.question_log_arr.length; i++) {
+        userChangeParamArr.push(user_object.question_log_arr[i].change_param)
+    }
+
+
+    //計算だけやる表示は後にする
+    for (let i = 0; i < user_object.question_log_arr.length; i++) {
+
+        holdingHonesty = holdingHonesty + userChangeParamArr[i].honesty;
+        holdingMoney = holdingMoney + userChangeParamArr[i].money
+    }
+
+
+
+
+    //結果を分岐する
+    //〇〇で〇〇.前半は誠実さ、後半は金額で変わる称号
+    let firstAchievement;
+    let secondAchievement;
+
+    if (holdingHonesty < 0) {
+        firstAchievement = '絶望的に軽薄な'
+    } else if (holdingHonesty >= 0 && holdingHonesty <= 20) {
+        firstAchievement = '一般的な魂を持つ'
+    } else {
+        firstAchievement = '素晴らしく尊く'
+    }
+
+    if (holdingMoney < -10000) {
+        secondAchievement = '超貧乏'
+    } else if (holdingMoney >= -10000 && holdingMoney <= 20000) {
+        secondAchievement = '平凡な資金力を持つ人'
+    } else {
+        secondAchievement = '大富豪'
+    }
+
+    //結果の称号を表示する
+    const achievementSentence = create_element('h2', '', '', 'あなたが今回獲得した称号:' + firstAchievement + secondAchievement);
+    fragment_object.append(achievementSentence);
+    const hr_0 = create_element('hr');
+    fragment_object.append(hr_0);
+
+
+
+
+
+
+    //最終的な誠実さとお金の表示
+    const lastHonesty = create_element('h3', '', '', `あなたの最終的な誠実さ: ${holdingHonesty}`);
+    fragment_object.append(lastHonesty);
+    const lastMoney = create_element('h3', '', '', `あなたの最終的な所持金:${holdingMoney}`);
+    fragment_object.append(lastMoney);
+    const hr_1 = create_element('hr');
+    fragment_object.append(hr_1);
+
+    //経過ログであることを書く
+    const logDiscription = create_element('h6', '', '', '経過ログ');
+    fragment_object.append(logDiscription);
+    const hr_2 = create_element('hr');
+    fragment_object.append(hr_2);
+
+    //経過ログの表示
+    for (let i = 0; i < user_object.question_log_arr.length; i++) {
+        let resultParagraph = create_element('h5', '', '', userQuestionSentenceArr[i]);
+        fragment_object.append(resultParagraph);
+        const hr_3 = create_element('hr');
+        fragment_object.append(hr_3);
+        let sentaku = create_element('h5', '', '', 'あなたの選択');
+        fragment_object.append(sentaku);
+        const hr_4 = create_element('hr');
+        fragment_object.append(hr_4);
+        let choiceParagraph = create_element('p', '', '', userChoiceSentenceArr[i]);
+        fragment_object.append(choiceParagraph);
+        const hr_5 = create_element('hr');
+        fragment_object.append(hr_5);
+        let changeHonestyParagraph = create_element('p', '', '', `誠実さ:${userChangeParamArr[i].honesty}`);
+        fragment_object.append(changeHonestyParagraph);
+        const hr_6 = create_element('hr');
+        fragment_object.append(hr_6);
+        let changeMoneyParagraph = create_element('p', '', '', `お金:${userChangeParamArr[i].money}`);
+        fragment_object.append(changeMoneyParagraph);
+        const hr_7 = create_element('hr');
+        fragment_object.append(hr_7);
+    }
+    console.log(userChangeParamArr);
     //全てを描画
     displayArea.append(fragment_object);
 }
