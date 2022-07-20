@@ -216,7 +216,7 @@ function showResult(fragment_object, user_object) {
     }
 
     //結果の称号を表示する
-    const achievementSentence = create_element('h2', '', '', 'あなたが今回獲得した称号:' + firstAchievement + secondAchievement);
+    const achievementSentence = create_element('h2','', 'card-header', 'あなたが今回獲得した称号:' + firstAchievement + secondAchievement);
     fragment_object.append(achievementSentence);
     const hr_0 = create_element('hr');
     fragment_object.append(hr_0);
@@ -227,41 +227,41 @@ function showResult(fragment_object, user_object) {
 
 
     //最終的な誠実さとお金の表示
-    const lastHonesty = create_element('h3', '', '', `あなたの最終的な誠実さ: ${holdingHonesty}`);
+    const lastHonesty = create_element('h4', '', 'card-body', `あなたの最終的な誠実さ: ${holdingHonesty}`);
     fragment_object.append(lastHonesty);
-    const lastMoney = create_element('h3', '', '', `あなたの最終的な所持金:${holdingMoney}`);
+    const lastMoney = create_element('h4', '', 'card-body', `あなたの最終的な所持金:${holdingMoney}`);
     fragment_object.append(lastMoney);
-    const hr_1 = create_element('hr');
-    fragment_object.append(hr_1);
+    //const hr_1 = create_element('hr');
+    //fragment_object.append(hr_1);
 
     //経過ログであることを書く
-    const logDiscription = create_element('h6', '', '', '経過ログ');
+    const logDiscription = create_element('h5', '', 'card-text', '経過ログ');
     fragment_object.append(logDiscription);
-    const hr_2 = create_element('hr');
-    fragment_object.append(hr_2);
+    //const hr_2 = create_element('hr');
+    //fragment_object.append(hr_2);
 
     //経過ログの表示
     for (let i = 0; i < user_object.question_log_arr.length; i++) {
-        let resultParagraph = create_element('h5', '', '', userQuestionSentenceArr[i]);
+        let resultParagraph = create_element('p', '', 'card-text', userQuestionSentenceArr[i]);
         fragment_object.append(resultParagraph);
-        const hr_3 = create_element('hr');
-        fragment_object.append(hr_3);
-        let sentaku = create_element('h5', '', '', 'あなたの選択');
+        //const hr_3 = create_element('hr');
+        //fragment_object.append(hr_3);
+        let sentaku = create_element('p', '', 'card-text', 'あなたの選択');
         fragment_object.append(sentaku);
-        const hr_4 = create_element('hr');
-        fragment_object.append(hr_4);
-        let choiceParagraph = create_element('p', '', '', userChoiceSentenceArr[i]);
+        //const hr_4 = create_element('hr');
+        //fragment_object.append(hr_4);
+        let choiceParagraph = create_element('p', '', 'card-text', userChoiceSentenceArr[i]);
         fragment_object.append(choiceParagraph);
-        const hr_5 = create_element('hr');
-        fragment_object.append(hr_5);
-        let changeHonestyParagraph = create_element('p', '', '', `誠実さ:${userChangeParamArr[i].honesty}`);
+        //const hr_5 = create_element('hr');
+        //fragment_object.append(hr_5);
+        let changeHonestyParagraph = create_element('p', '', 'card-text', `誠実さ:${userChangeParamArr[i].honesty}`);
         fragment_object.append(changeHonestyParagraph);
-        const hr_6 = create_element('hr');
-        fragment_object.append(hr_6);
-        let changeMoneyParagraph = create_element('p', '', '', `お金:${userChangeParamArr[i].money}`);
+        //const hr_6 = create_element('hr');
+        //fragment_object.append(hr_6);
+        let changeMoneyParagraph = create_element('p', '', 'card-text', `お金:${userChangeParamArr[i].money}`);
         fragment_object.append(changeMoneyParagraph);
-        const hr_7 = create_element('hr');
-        fragment_object.append(hr_7);
+        //const hr_7 = create_element('hr');
+        //fragment_object.append(hr_7);
     }
     console.log(userChangeParamArr);
     //全てを描画
