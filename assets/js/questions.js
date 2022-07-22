@@ -92,7 +92,7 @@ function setQuestionsObjects(limitnum, user_object) {
     for (let i = 0; i < limitnum; i++) {
         user_object.question_object_arr.push(getRandomEvent());
     }
-    console.log(user_object);
+    //console.log(user_object);
 }
 
 //Userオブジェクトの質問オブジェクトから番号の質問文を返す
@@ -141,7 +141,7 @@ function makeAQuestionAndRadio(fragment_object, user_object, num) {
     submitButton.onclick = function () {
         let flag = false;
 
-        //TODOチェックが入ってない時のガード句
+        //チェックが入ってない時のガード句
         for(let i = 0; i < choiceRadio.length;i++){
             if(choiceRadio[i].checked === true){
                 flag = true;
@@ -175,7 +175,7 @@ function makeAQuestionAndRadio(fragment_object, user_object, num) {
         //質問画面を再度生成する
         makeAQuestionAndRadio(fragment_object, user_object, num);
 
-        console.log(user_object.question_log_arr);
+        //console.log(user_object.question_log_arr);
     }
 }
 
@@ -218,17 +218,17 @@ function showResult(fragment_object, user_object) {
     let secondAchievement;
 
     if (holdingHonesty < 0) {
-        firstAchievement = '絶望的に軽薄な'
+        firstAchievement = '軽薄な'
     } else if (holdingHonesty >= 0 && holdingHonesty <= 20) {
-        firstAchievement = '一般的な性質の'
+        firstAchievement = '普通の'
     } else {
-        firstAchievement = '素晴らしく尊く'
+        firstAchievement = '尊い'
     }
 
     if (holdingMoney < -10000) {
-        secondAchievement = '超貧乏'
+        secondAchievement = '貧乏人'
     } else if (holdingMoney >= -10000 && holdingMoney <= 20000) {
-        secondAchievement = '平凡な資金力を持つ人'
+        secondAchievement = '落ち着いた小金持ち'
     } else {
         secondAchievement = '大富豪'
     }
