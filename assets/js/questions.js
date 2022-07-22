@@ -1,6 +1,7 @@
 'use strict';
 const enterButton = document.getElementById('enter_button');
 const displayArea = document.getElementById('display_area');
+const choiceForm = document.getElementById('choice');
 let limitNum = 5;
 
 
@@ -109,34 +110,51 @@ function makeAQuestionAndRadio(fragment_object, user_object, num) {
         showResult(fragment_object, user_object);
         return;
     }
-    const questionSentence = create_element('p', 'question_sentence', '', user_object.question_object_arr[num].question);
+    const questionSentence = create_element('h5', 'question_sentence', 'text-light mt-5', user_object.question_object_arr[num].question);
     fragment_object.append(questionSentence);
     //choicesがMapなのかオブジェクトなのかJSONなのか区別がついてない。choicesのkeyだけを引っ張り出して選択肢のラベルにしたい
-    const selectInput_0 = create_input_element('radio', 'select_radio', 'select_0', Object.keys(user_object.question_object_arr[num].choices)[0], '', 'choice_radio');
+    const selectInput_0 = create_input_element('radio', 'select_radio', 'text-light mt-2', Object.keys(user_object.question_object_arr[num].choices)[0], '', 'choice_radio');
     fragment_object.append(selectInput_0);
-    const selectLabel_0 = create_label(Object.keys(user_object.question_object_arr[num].choices)[0]);
+    const selectLabel_0 = create_label(Object.keys(user_object.question_object_arr[num].choices)[0],'text-light');
     fragment_object.append(selectLabel_0);
     const br = create_element('br');
     fragment_object.append(br);
-    const selectInput_1 = create_input_element('radio', 'select_radio', 'select_1', Object.keys(user_object.question_object_arr[num].choices)[1], '', 'choice_radio');
+    const selectInput_1 = create_input_element('radio', 'select_radio', 'text-light mt-2', Object.keys(user_object.question_object_arr[num].choices)[1], '', 'choice_radio');
     fragment_object.append(selectInput_1);
-    const selectLabel_1 = create_label(Object.keys(user_object.question_object_arr[num].choices)[1]);
+    const selectLabel_1 = create_label(Object.keys(user_object.question_object_arr[num].choices)[1],'text-light mt-2');
     fragment_object.append(selectLabel_1);
     const br_2 = create_element('br');
     fragment_object.append(br_2);
-    const submitButton = create_element('button', 'submit_button', '', '私は選択する');
+    const submitButton = create_element('button', 'submit_button', 'btn btn-primary mt-2', '私は選択する');
     fragment_object.append(submitButton);
 
     //全てを描画
+    //displayArea.append(fragment_object);
     displayArea.append(fragment_object);
+
 
     //radioをnameから取得する
     let choiceRadio = document.getElementsByName('choice_radio');
 
-    //console.log(choiceRadio);
+    //console.log(choiceRadio
 
     submitButton.onclick = function () {
+        let flag = false;
+
+        //TODOチェックが入ってない時のガード句
+        for(let i = 0; i < choiceRadio.length;i++){
+            if(choiceRadio[i].checked === true){
+                flag = true;
+            }
+        }
+        if(flag === false){
+            alert('選択してからボタンを押してください。');
+            return;
+        }
+
         //console.log('clicked');
+
+        console.log(choiceRadio[0].checked);
 
         returnRadiosNum(choiceRadio);
         let questionLogObject = {
@@ -163,7 +181,7 @@ function makeAQuestionAndRadio(fragment_object, user_object, num) {
 
 //結果を表示する
 function showResult(fragment_object, user_object) {
-    const discription = create_element('h2', '', '', 'あなたのとった行動と結果');
+    const discription = create_element('h2', '', 'text-light', 'あなたのとった行動と結果');
     fragment_object.append(discription);
     let holdingMoney = 10000;
     let holdingHonesty = 0;
@@ -202,7 +220,7 @@ function showResult(fragment_object, user_object) {
     if (holdingHonesty < 0) {
         firstAchievement = '絶望的に軽薄な'
     } else if (holdingHonesty >= 0 && holdingHonesty <= 20) {
-        firstAchievement = '一般的な魂を持つ'
+        firstAchievement = '一般的な性質の'
     } else {
         firstAchievement = '素晴らしく尊く'
     }
@@ -216,7 +234,7 @@ function showResult(fragment_object, user_object) {
     }
 
     //結果の称号を表示する
-    const achievementSentence = create_element('h2','', 'card-header', 'あなたが今回獲得した称号:' + firstAchievement + secondAchievement);
+    const achievementSentence = create_element('h2','', 'card-header text-success', 'あなたが今回獲得した称号:' + firstAchievement + secondAchievement);
     fragment_object.append(achievementSentence);
     const hr_0 = create_element('hr');
     fragment_object.append(hr_0);
@@ -227,43 +245,66 @@ function showResult(fragment_object, user_object) {
 
 
     //最終的な誠実さとお金の表示
-    const lastHonesty = create_element('h4', '', 'card-body', `あなたの最終的な誠実さ: ${holdingHonesty}`);
+    let jpy_price1 = holdingMoney.toLocaleString('ja-JP', {style:'currency', currency: 'JPY'});
+    const lastHonesty = create_element('h4', '', 'card-body text-light', `あなたの最終的な誠実さ: ${holdingHonesty}`);
     fragment_object.append(lastHonesty);
-    const lastMoney = create_element('h4', '', 'card-body', `あなたの最終的な所持金:${holdingMoney}`);
+    const lastMoney = create_element('h4', '', 'card-body text-light', `あなたの最終的な所持金:${jpy_price1}`);
+
+    
     fragment_object.append(lastMoney);
     //const hr_1 = create_element('hr');
     //fragment_object.append(hr_1);
 
     //経過ログであることを書く
-    const logDiscription = create_element('h5', '', 'card-text', '経過ログ');
+    const logDiscription = create_element('h5', '', 'card-text text-light', '経過ログ');
     fragment_object.append(logDiscription);
     //const hr_2 = create_element('hr');
     //fragment_object.append(hr_2);
 
     //経過ログの表示
     for (let i = 0; i < user_object.question_log_arr.length; i++) {
-        let resultParagraph = create_element('p', '', 'card-text', userQuestionSentenceArr[i]);
+        let resultParagraph = create_element('p', '', 'card-text text-light', userQuestionSentenceArr[i]);
         fragment_object.append(resultParagraph);
         //const hr_3 = create_element('hr');
         //fragment_object.append(hr_3);
-        let sentaku = create_element('p', '', 'card-text', 'あなたの選択');
+        let sentaku = create_element('p', '', 'card-text text-light', 'あなたの選択');
         fragment_object.append(sentaku);
         //const hr_4 = create_element('hr');
         //fragment_object.append(hr_4);
-        let choiceParagraph = create_element('p', '', 'card-text', userChoiceSentenceArr[i]);
+        let choiceParagraph = create_element('p', '', 'card-text text-light', userChoiceSentenceArr[i]);
         fragment_object.append(choiceParagraph);
         //const hr_5 = create_element('hr');
         //fragment_object.append(hr_5);
-        let changeHonestyParagraph = create_element('p', '', 'card-text', `誠実さ:${userChangeParamArr[i].honesty}`);
+        let changeHonestyParagraph = create_element('p', '', 'card-text text-light', `誠実さ:${userChangeParamArr[i].honesty}`);
         fragment_object.append(changeHonestyParagraph);
         //const hr_6 = create_element('hr');
         //fragment_object.append(hr_6);
-        let changeMoneyParagraph = create_element('p', '', 'card-text', `お金:${userChangeParamArr[i].money}`);
+        let jpy_price2 = userChangeParamArr[i].money.toLocaleString('ja-JP', {style:'currency', currency: 'JPY'});
+        let changeMoneyParagraph = create_element('p', '', 'card-text text-light', `お金:${jpy_price2}`);
         fragment_object.append(changeMoneyParagraph);
         //const hr_7 = create_element('hr');
         //fragment_object.append(hr_7);
     }
     console.log(userChangeParamArr);
+    const tweetDivided = document.getElementById('tweet_area');
+    // TODO ツイートエリアの作成
+tweetDivided.innerText = '';
+const anchor = document.createElement('a');
+const hrefValue =
+  'https://twitter.com/intent/tweet?button_hashtag=' + encodeURIComponent('ちいさなRPG') + "&hashtags=" + encodeURIComponent('称号とったぞ')+'&ref_src=twsrc%5Etfw';
+
+anchor.setAttribute('href', hrefValue);
+anchor.setAttribute('class', 'twitter-hashtag-button');
+anchor.setAttribute('data-text', firstAchievement + secondAchievement);
+anchor.innerText = 'Tweet #ちいさなRPG';
+
+const script = document.createElement('script');
+script.setAttribute('src', 'https://platform.twitter.com/widgets.js');
+tweetDivided.appendChild(script);
+
+tweetDivided.appendChild(anchor);
+
+
     //全てを描画
     displayArea.append(fragment_object);
 }

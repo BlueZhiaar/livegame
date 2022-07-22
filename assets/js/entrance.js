@@ -6,10 +6,10 @@ window.onload = function(){
 
     //タイトルの追加
     const title = 'ちいさなRPG';
-    const title_el = create_element('h1','','',title);
+    const title_el = create_element('h1','','text-light mt-5',title);
     indexFragment.append(title_el);
 
-    const enterButton = create_element('button','enter_button','','入口');
+    const enterButton = create_element('button','enter_button','btn btn-primary btn-lg mt-2','入口');
     indexFragment.append(enterButton);
 
     

@@ -58,11 +58,14 @@ function create_input_element(type,id_name='',class_name='',value='',innner_text
 }
 
 //labelを作る
-function create_label(label_name){
+function create_label(label_name,class_name){
     const el = document.createElement('label');
 
     if(label_name){
         el.innerText = label_name;
+    }
+    if(class_name){
+        el.className = class_name;
     }
     return el;
 }
