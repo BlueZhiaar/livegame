@@ -181,7 +181,7 @@ function makeAQuestionAndRadio(fragment_object, user_object, num) {
 
 //結果を表示する
 function showResult(fragment_object, user_object) {
-    const discription = create_element('h2', '', 'text-light', 'あなたのとった行動と結果');
+    const discription = create_element('h2', '', 'text-light', 'あなたのとった行動と称号');
     fragment_object.append(discription);
     let holdingMoney = 10000;
     let holdingHonesty = 0;

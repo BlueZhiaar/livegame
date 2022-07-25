@@ -9,6 +9,11 @@ window.onload = function(){
     const title_el = create_element('h1','','text-light mt-5',title);
     indexFragment.append(title_el);
 
+    //TODO説明文を追加
+    const discription_paragraph = 'あなたはこれから、いくつかの選択を迫られます。あなたは選択し、称号を得るでしょう。入口をクリックしてお入りください。';
+    const discription_paragraph_el = create_element('p','','text-light',discription_paragraph);
+    indexFragment.append(discription_paragraph_el);
+
     const enterButton = create_element('button','enter_button','btn btn-primary btn-lg mt-2','入口');
     indexFragment.append(enterButton);
 
