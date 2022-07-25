@@ -113,13 +113,13 @@ function makeAQuestionAndRadio(fragment_object, user_object, num) {
     const questionSentence = create_element('h5', 'question_sentence', 'text-light mt-5', user_object.question_object_arr[num].question);
     fragment_object.append(questionSentence);
     //choicesがMapなのかオブジェクトなのかJSONなのか区別がついてない。choicesのkeyだけを引っ張り出して選択肢のラベルにしたい
-    const selectInput_0 = create_input_element('radio', 'select_radio', 'text-light mt-2', Object.keys(user_object.question_object_arr[num].choices)[0], '', 'choice_radio');
+    const selectInput_0 = create_input_element('radio', 'select_radio', 'text-light mt-3', Object.keys(user_object.question_object_arr[num].choices)[0], '', 'choice_radio');
     fragment_object.append(selectInput_0);
     const selectLabel_0 = create_label(Object.keys(user_object.question_object_arr[num].choices)[0],'text-light');
     fragment_object.append(selectLabel_0);
     const br = create_element('br');
     fragment_object.append(br);
-    const selectInput_1 = create_input_element('radio', 'select_radio', 'text-light mt-2', Object.keys(user_object.question_object_arr[num].choices)[1], '', 'choice_radio');
+    const selectInput_1 = create_input_element('radio', 'select_radio', 'text-light mt-3', Object.keys(user_object.question_object_arr[num].choices)[1], '', 'choice_radio');
     fragment_object.append(selectInput_1);
     const selectLabel_1 = create_label(Object.keys(user_object.question_object_arr[num].choices)[1],'text-light mt-2');
     fragment_object.append(selectLabel_1);

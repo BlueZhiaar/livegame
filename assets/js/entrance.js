@@ -14,7 +14,7 @@ window.onload = function(){
     const discription_paragraph_el = create_element('p','','text-light',discription_paragraph);
     indexFragment.append(discription_paragraph_el);
 
-    const enterButton = create_element('button','enter_button','btn btn-primary btn-lg mt-2','入口');
+    const enterButton = create_element('button','enter_button','btn btn-info btn-lg mt-2','入口');
     indexFragment.append(enterButton);
 
     
