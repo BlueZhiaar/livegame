@@ -2,6 +2,7 @@
 const enterButton = document.getElementById('enter_button');
 const displayArea = document.getElementById('display_area');
 const choiceForm = document.getElementById('choice');
+const blueArea = document.getElementById('blue_area');
 let limitNum = 5;
 
 
@@ -181,6 +182,9 @@ function makeAQuestionAndRadio(fragment_object, user_object, num) {
 
 //結果を表示する
 function showResult(fragment_object, user_object) {
+    displayArea.style = '';
+    blueArea.style = '';
+
     const discription = create_element('h2', '', 'text-light', 'あなたのとった行動と称号');
     fragment_object.append(discription);
     let holdingMoney = 10000;
@@ -287,6 +291,7 @@ function showResult(fragment_object, user_object) {
     }
     console.log(userChangeParamArr);
     const tweetDivided = document.getElementById('tweet_area');
+    tweetDivided.className = 'text-center';
     // TODO ツイートエリアの作成
 tweetDivided.innerText = '';
 const anchor = document.createElement('a');
