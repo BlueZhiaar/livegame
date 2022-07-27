@@ -185,7 +185,7 @@ function showResult(fragment_object, user_object) {
     displayArea.style = '';
     blueArea.style = '';
 
-    const discription = create_element('h2', '', 'text-light', 'あなたのとった行動と称号');
+    const discription = create_element('h2', '', 'text-light', 'あなたのとった行動と得られた称号');
     fragment_object.append(discription);
     let holdingMoney = 10000;
     let holdingHonesty = 0;
