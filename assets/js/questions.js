@@ -247,7 +247,6 @@ function showResult(fragment_object, user_object) {
 
 
 
-
     //最終的な誠実さとお金の表示
     let jpy_price1 = holdingMoney.toLocaleString('ja-JP', {style:'currency', currency: 'JPY'});
     const lastHonesty = create_element('h4', '', 'card-body text-light', `あなたの最終的な誠実さ: ${holdingHonesty}`);
