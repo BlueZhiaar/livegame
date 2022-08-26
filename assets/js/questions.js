@@ -291,15 +291,26 @@ function showResult(fragment_object, user_object) {
     console.log(userChangeParamArr);
     const tweetDivided = document.getElementById('tweet_area');
     tweetDivided.className = 'text-center';
+
+    //TODO ツイート内容を作る関数
+    /**
+     * @param {string,string} firstAchievement,secondAchievement
+     * @return {string}
+     * 
+     */
+    function makeTweetBody(fa,sa){
+        return `獲得した称号:${firstAchievement+secondAchievement} https://bluezhiaar.github.io/livegame/index.html`
+    }
+
     // TODO ツイートエリアの作成
 tweetDivided.innerText = '';
 const anchor = document.createElement('a');
 const hrefValue =
-  'https://twitter.com/intent/tweet?button_hashtag=' + encodeURIComponent('ちいさなRPG') + "&hashtags=" + encodeURIComponent('称号とったぞ')+'&ref_src=twsrc%5Etfw';
+  'https://twitter.com/intent/tweet?button_hashtag=' + encodeURIComponent('ちいさなRPG') + "&hashtags=" + encodeURIComponent('ミニゲーム')+'&ref_src=twsrc%5Etfw';
 
 anchor.setAttribute('href', hrefValue);
 anchor.setAttribute('class', 'twitter-hashtag-button');
-anchor.setAttribute('data-text', firstAchievement + secondAchievement);
+anchor.setAttribute('data-text', makeTweetBody(firstAchievement,secondAchievement));
 anchor.innerText = 'Tweet #ちいさなRPG';
 
 const script = document.createElement('script');
