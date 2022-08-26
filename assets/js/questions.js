@@ -220,21 +220,29 @@ function showResult(fragment_object, user_object) {
     //〇〇で〇〇.前半は誠実さ、後半は金額で変わる称号
     let firstAchievement;
     let secondAchievement;
+    let firstPoem;
+    let secondPoem;
 
     if (holdingHonesty < 0) {
         firstAchievement = '軽薄な'
+        firstPoem = 'ひらひらと舞い降りる人格。全ては崩れ去って跡形もなく、灯と思える罠の跡には染み入る岩のほのかなかがり火。世の中を薄っすらと知った気になっていた。だから自分は今ここにいる。ここはとても暗い。';
     } else if (holdingHonesty >= 0 && holdingHonesty <= 20) {
-        firstAchievement = '普通の'
+        firstAchievement = '普通の';
+        firstPoem = '周りの人間と一緒に同じことをやっていれば安心できた。流行っている曲が好きだった。趣味はみんなに合わせた。素直でいい人だと言われてきた。信じるものはみんなが信じているもの。周囲はだんだん明るくなっていくような気がする。';
     } else {
-        firstAchievement = '尊い'
+        firstAchievement = '尊い';
+        firstPoem = '長く潜っていたら外に放り出されていた。天の真珠はこちらに降り注ぎ、マグマの秋は進化の糧になる。切磋琢磨の大岩は棚田から転がり落ち、シャクヤクの実は花火と共に海に沈む。千年の時を渡りサンゴの汗を砕き、ゴボウの泥を土に埋める。ここはとても明るい。';
     }
 
     if (holdingMoney < -10000) {
         secondAchievement = '貧乏人'
+        secondPoem = '爪に桜を咲かせ、太陽に君を捧げ、虚空に白米を見て、さあおにぎりを食べようと雀卓を見れば既にセットされていたドリアン。隣に行けば露の商人がたくさんのイカメシをくれた。たくさん食べたい。';
     } else if (holdingMoney >= -10000 && holdingMoney <= 20000) {
-        secondAchievement = '落ち着いた小金持ち'
+        secondAchievement = '落ち着いた小金持ち';
+        secondPoem = 'さあ家に据えなさい。市町村には接着剤とマグカップを持参するように伝えておく。島々の大陸には入道雲が産卵しているだろう。辛気臭くなることはない。あなたは市町村なのだから。ああ、もう少し体を動かしたい。';
     } else {
-        secondAchievement = '大富豪'
+        secondAchievement = '大富豪';
+        secondPoem = '光り輝くまな板の上に真珠色の土偶が座っていて、わたしは聞いてみたんです。「今日の天気はすき焼きですか？」と。なぜって、とてもキレイだったから。しがらみの無い政治を実現するために卵かけご飯には醤油と麺つゆどちらがいいだろうっていつも思っている。余はもう満足である。'
     }
 
     //結果の称号を表示する
@@ -243,13 +251,22 @@ function showResult(fragment_object, user_object) {
     const hr_0 = create_element('hr');
     fragment_object.append(hr_0);
 
+ //TODO　マルチエンディングの中身を書く
 
+ 
+ 
 
 
 
     //最終的な誠実さとお金の表示
     let jpy_price1 = holdingMoney.toLocaleString('ja-JP', {style:'currency', currency: 'JPY'});
     const lastHonesty = create_element('h4', '', 'card-body text-light', `あなたの最終的な誠実さ: ${holdingHonesty}`);
+
+    /**
+     * マルチエンディングにする
+     * 
+     * 
+     */
     fragment_object.append(lastHonesty);
     const lastMoney = create_element('h4', '', 'card-body text-light', `あなたの最終的な所持金:${jpy_price1}`);
 
