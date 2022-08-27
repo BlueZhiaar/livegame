@@ -182,11 +182,12 @@ function makeAQuestionAndRadio(fragment_object, user_object, num) {
 
 //結果を表示する
 function showResult(fragment_object, user_object) {
-    displayArea.style = '';
-    blueArea.style = '';
+    //displayArea.style = '';
+    //blueArea.style = '';
 
     const discription = create_element('h2', '', 'text-light', 'あなたのとった行動と得られた称号');
     fragment_object.append(discription);
+    
     let holdingMoney = 10000;
     let holdingHonesty = 0;
     let userQuestionSentenceArr = new Array();
@@ -225,33 +226,41 @@ function showResult(fragment_object, user_object) {
 
     if (holdingHonesty < 0) {
         firstAchievement = '軽薄な'
-        firstPoem = 'ひらひらと舞い降りる人格。全ては崩れ去って跡形もなく、灯と思える罠の跡には染み入る岩のほのかなかがり火。世の中を薄っすらと知った気になっていた。だから自分は今ここにいる。ここはとても暗い。';
+        firstPoem = 'ひらひらと舞い降りる人格。\n全ては崩れ去って跡形もなく、灯と思える罠の跡には染み入る岩のほのかなかがり火。\n世の中を薄っすらと知った気になっていた。\nだから自分は今ここにいる。\nここはとても暗い。\n';
     } else if (holdingHonesty >= 0 && holdingHonesty <= 20) {
         firstAchievement = '普通の';
-        firstPoem = '周りの人間と一緒に同じことをやっていれば安心できた。流行っている曲が好きだった。趣味はみんなに合わせた。素直でいい人だと言われてきた。信じるものはみんなが信じているもの。周囲はだんだん明るくなっていくような気がする。';
+        firstPoem = '周りの人間と一緒に同じことをやっていれば安心できた。\n流行っている曲が好きだった。\n趣味はみんなに合わせた。\n素直でいい人だと言われてきた。\n信じるものはみんなが信じているもの。\n周囲はだんだん明るくなっていくような気がする。\n';
     } else {
         firstAchievement = '尊い';
-        firstPoem = '長く潜っていたら外に放り出されていた。天の真珠はこちらに降り注ぎ、マグマの秋は進化の糧になる。切磋琢磨の大岩は棚田から転がり落ち、シャクヤクの実は花火と共に海に沈む。千年の時を渡りサンゴの汗を砕き、ゴボウの泥を土に埋める。ここはとても明るい。';
+        firstPoem = '長く潜っていたら外に放り出されていた。\n天の真珠はこちらに降り注ぎ、マグマの秋は進化の糧になる。\n切磋琢磨の大岩は棚田から転がり落ち、シャクヤクの実は花火と共に海に沈む。\n千年の時を渡りサンゴの汗を砕き、ゴボウの泥を土に埋める。\nここはとても明るい。\n';
     }
 
     if (holdingMoney < -10000) {
         secondAchievement = '貧乏人'
-        secondPoem = '爪に桜を咲かせ、太陽に君を捧げ、虚空に白米を見て、さあおにぎりを食べようと雀卓を見れば既にセットされていたドリアン。隣に行けば露の商人がたくさんのイカメシをくれた。たくさん食べたい。';
+        secondPoem = '爪に桜を咲かせ、太陽に君を捧げ、虚空に白米を見て、さあおにぎりを食べようと雀卓を見れば既にセットされていたドリアン。\n隣に行けば露の商人がたくさんのイカメシをくれた。\nたくさん食べたい。\n';
     } else if (holdingMoney >= -10000 && holdingMoney <= 20000) {
         secondAchievement = '落ち着いた小金持ち';
-        secondPoem = 'さあ家に据えなさい。市町村には接着剤とマグカップを持参するように伝えておく。島々の大陸には入道雲が産卵しているだろう。辛気臭くなることはない。あなたは市町村なのだから。ああ、もう少し体を動かしたい。';
+        secondPoem = 'さあ家に据えなさい。\n市町村には接着剤とマグカップを持参するように伝えておく。\n島々の大陸には入道雲が産卵しているだろう。\n辛気臭くなることはない。\nあなたは市町村なのだから。\nああ、もう少し体を動かしたい。\n';
     } else {
         secondAchievement = '大富豪';
-        secondPoem = '光り輝くまな板の上に真珠色の土偶が座っていて、わたしは聞いてみたんです。「今日の天気はすき焼きですか？」と。なぜって、とてもキレイだったから。しがらみの無い政治を実現するために卵かけご飯には醤油と麺つゆどちらがいいだろうっていつも思っている。余はもう満足である。'
+        secondPoem = '光り輝くまな板の上に真珠色の土偶が座っていて、わたしは聞いてみたんです。\n「今日の天気はすき焼きですか？」と。\nなぜって、とてもキレイだったから。\nしがらみの無い政治を実現するために卵かけご飯には醤油と麺つゆどちらがいいだろうっていつも思っている。\n余はもう満足である。\n'
     }
 
     //結果の称号を表示する
+    
     const achievementSentence = create_element('h2','', 'card-header text-success', 'あなたが今回獲得した称号:' + firstAchievement + secondAchievement);
     fragment_object.append(achievementSentence);
     const hr_0 = create_element('hr');
     fragment_object.append(hr_0);
+    
 
  //TODO　マルチエンディングの中身を書く
+ const tenmatu = create_element('h1','','text-light','顛末');
+ fragment_object.append(tenmatu);
+
+ const resultLongSentence = create_element('p','','text-light',`${firstPoem}${secondPoem}`);
+    fragment_object.append(resultLongSentence);
+
 
  
  
@@ -259,8 +268,11 @@ function showResult(fragment_object, user_object) {
 
 
     //最終的な誠実さとお金の表示
+
+    
     let jpy_price1 = holdingMoney.toLocaleString('ja-JP', {style:'currency', currency: 'JPY'});
     const lastHonesty = create_element('h4', '', 'card-body text-light', `あなたの最終的な誠実さ: ${holdingHonesty}`);
+
 
     /**
      * マルチエンディングにする
@@ -276,12 +288,15 @@ function showResult(fragment_object, user_object) {
     //fragment_object.append(hr_1);
 
     //経過ログであることを書く
+    /*
     const logDiscription = create_element('h5', '', 'card-text text-light', '経過ログ');
     fragment_object.append(logDiscription);
+    */
     //const hr_2 = create_element('hr');
     //fragment_object.append(hr_2);
 
     //経過ログの表示
+    /*
     for (let i = 0; i < user_object.question_log_arr.length; i++) {
         let resultParagraph = create_element('p', '', 'card-text text-light', userQuestionSentenceArr[i]);
         fragment_object.append(resultParagraph);
@@ -305,7 +320,11 @@ function showResult(fragment_object, user_object) {
         //const hr_7 = create_element('hr');
         //fragment_object.append(hr_7);
     }
+
+    
     console.log(userChangeParamArr);
+    */
+
     const tweetDivided = document.getElementById('tweet_area');
     tweetDivided.className = 'text-center';
 
